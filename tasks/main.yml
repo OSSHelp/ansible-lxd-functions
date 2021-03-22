@@ -1,0 +1,53 @@
+---
+- name: create dirs
+  file:
+    path: "{{ item.dst_dir }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ files }}"
+
+- name: download files
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dst_dir }}/{{ item.name }}"
+    mode: "{{ item.mode }}"
+    checksum: "{{ item.checksum }}"
+  loop: "{{ files }}"
+  when: not ansible_check_mode
+
+- name: create dir for templates
+  file:
+    path: "{{ templates_dir }}"
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+
+- name: install packages for python
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - libssl-dev
+      - libffi-dev
+      - python3-pip
+      - python3-dev
+      - python3-setuptools
+      - python-setuptools
+      - python3-wheel
+  when: setup_testinfra
+
+- name: install pylxd and testinfra python modules
+  pip:
+    name: "{{ modules }}"
+    executable: pip3
+    extra_args: --no-cache-dir
+  vars:
+    modules:
+      - pylxd==2.2.11
+      - testinfra
+  when: setup_testinfra and not ansible_check_mode
+
+- name: setting installed flag
+  set_fact:
+    lxd_functions_installed: true

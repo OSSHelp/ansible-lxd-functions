@@ -1,0 +1,26 @@
+---
+
+setup_testinfra: false
+templates_dir: /usr/local/etc/lxc
+
+files:
+  - name: lxhelper
+    url: https://oss.help/scripts/lxc/lxhelper/lxhelper
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    dst_dir: /usr/local/sbin
+    mode: 700
+  - name: lxd-functions.sh
+    url: https://oss.help/scripts/lxc/lxhelper/lxd-functions.sh
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    dst_dir: /usr/local/include/osshelp
+    mode: 600
+  - name: yq
+    url: https://oss.help/builds/pub/yq/2.1.2/yq_linux_amd64
+    checksum: "sha256:https://oss.help/builds/pub/yq/2.1.2/SHA256SUMS"
+    dst_dir: /usr/local/bin
+    mode: 755
+  - name: minio-client
+    url: https://oss.help/builds/pub/minio/minio-client
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    dst_dir: /usr/local/bin
+    mode: 755
