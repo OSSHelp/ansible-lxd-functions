@@ -41,4 +41,4 @@ testinfra_python_requirements:
 testinfra_python_modules:
   - cryptography
   - pylxd==2.2.11
-  - testinfra
+  - pytest-testinfra
