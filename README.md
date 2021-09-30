@@ -19,6 +19,7 @@ Ansible role for LXHelper and lxd-functions library. Optionally can install requ
 | Param | Default | Description |
 | -------- | -------- | -------- |
 | `setup_testinfra` | `false` | Installs the required python modules for testing containers via Testinfra |
+| `lxd_functions_version` | `1-latest` | Version to install |
 
 ## Useful links
 

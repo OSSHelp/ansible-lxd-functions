@@ -3,15 +3,17 @@
 setup_testinfra: false
 templates_dir: /usr/local/etc/lxc
 
+lxd_functions_version: '1-latest'
+
 files:
   - name: lxhelper
-    url: https://oss.help/scripts/lxc/lxhelper/lxhelper
-    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    url: "https://oss.help/scripts/lxc/lxhelper/{{ lxd_functions_version }}/lxhelper"
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/{{ lxd_functions_version }}/SHA256SUMS"
     dst_dir: /usr/local/sbin
     mode: 700
   - name: lxd-functions.sh
-    url: https://oss.help/scripts/lxc/lxhelper/lxd-functions.sh
-    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    url: "https://oss.help/scripts/lxc/lxhelper/{{ lxd_functions_version }}/lxd-functions.sh"
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/{{ lxd_functions_version }}/SHA256SUMS"
     dst_dir: /usr/local/include/osshelp
     mode: 600
   - name: yq
@@ -21,7 +23,7 @@ files:
     mode: 755
   - name: minio-client
     url: https://oss.help/builds/pub/minio/minio-client
-    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/SHA256SUMS"
+    checksum: "sha256:https://oss.help/scripts/lxc/lxhelper/{{ lxd_functions_version }}/SHA256SUMS"
     dst_dir: /usr/local/bin
     mode: 755
 
